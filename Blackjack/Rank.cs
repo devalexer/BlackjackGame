@@ -6,15 +6,6 @@ using System.Threading.Tasks;
 
 namespace Blackjack
 {
-    public enum Suit
-    {
-        Hearts,
-        Clubs,
-        Diamonds,
-        Spades
-    }
-
-
     public enum Rank
     {
         Ace,
@@ -31,5 +22,4 @@ namespace Blackjack
         Queen,
         King
     }
-
 }

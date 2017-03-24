@@ -1,0 +1,6 @@
+C:\Users\Allie\Documents\Visual Studio 2017\Projects\BlackjackGame\Blackjack\obj\Debug\Blackjack.csprojResolveAssemblyReference.cache
+C:\Users\Allie\Documents\Visual Studio 2017\Projects\BlackjackGame\Blackjack\bin\Debug\Blackjack.exe.config
+C:\Users\Allie\Documents\Visual Studio 2017\Projects\BlackjackGame\Blackjack\bin\Debug\Blackjack.exe
+C:\Users\Allie\Documents\Visual Studio 2017\Projects\BlackjackGame\Blackjack\bin\Debug\Blackjack.pdb
+C:\Users\Allie\Documents\Visual Studio 2017\Projects\BlackjackGame\Blackjack\obj\Debug\Blackjack.exe
+C:\Users\Allie\Documents\Visual Studio 2017\Projects\BlackjackGame\Blackjack\obj\Debug\Blackjack.pdb

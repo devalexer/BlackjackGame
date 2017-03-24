@@ -8,23 +8,81 @@ namespace Blackjack
 {
     class Program
     {
+
+        //Sort the deck method
+
+        public static List<Card> CreateAndShuffleDeck()
+        {
+            var deck = new List<Card>();
+
+            foreach (Rank r in Enum.GetValues(typeof(Rank)))
+            {
+                foreach (Suit s in Enum.GetValues(typeof(Suit)))
+                {
+                    deck.Add(new Card(s, r));
+                }
+            }
+            var randomDeck = deck.OrderBy(x => Guid.NewGuid()).ToList();
+
+            return randomDeck;
+        }
+
+        //Get total value of hand method
+
+        public int GetHandTotal(List<Card> hand)
+        {
+            var sum = 0;
+            foreach (var card in hand)
+            {
+            sum += card.GetCardValue();
+            }
+            return sum;
+        }
+
+        //Main
         static void Main(string[] args)
         {
-            //Define deck(name all cards -aces are 11)
-            //In Suit-Rank.cs
 
-            //Define suits(spades, diamonds, hearts, clubs)
-            //In Suit-Rank.cs
+            var gameDeck = CreateAndShuffleDeck();
+            var playersHand = new List<Card>();
+            var dealersHand = new List<Card>();
 
-            //Define quantity of cards(52)
-            //Define how deck shuffles(random card)
-            //Define dealer hand
-            //Define player hand
+
+            Console.WriteLine("Let's play BlackJack!");
+
+            //Produces dealer hand
+            dealersHand.Add(gameDeck[0]);
+            gameDeck.RemoveAt(0);
+
+            dealersHand.Add(gameDeck[0]);
+            gameDeck.RemoveAt(0);
+            Console.WriteLine($"Here are the dealer's first two cards: {dealersHand[0]} and {dealersHand[1]}");
+            Console.WriteLine($"The total value is {GetHandTotal(dealersHand)}");
+
+            //Produces player hand
+            playersHand.Add(gameDeck[0]);
+            gameDeck.RemoveAt(0);
+
+            playersHand.Add(gameDeck[0]);
+            gameDeck.RemoveAt(0);
+            Console.WriteLine($"Here are your first two cards: {playersHand [0]} and {playersHand [1]}");
+            Console.WriteLine($"The total value is {GetHandTotal(playersHand)}");
+
+            Console.WriteLine("Do you want another card?");
+            var playerhit = Console.ReadLine();
+
+            //Get total card value of dealer's hand
+            //var currentCardTotals = dealersHand [0].GetCardValue();
+
+
+            //if rv < 
+            //if rv > 21 
+            //Console.WriteLine("Sorry, you lost.")
+
+            //Assign values to cards
             //Define dealer rules(hits if they hold less than 16, otherwise Dealer stays)
             //Identify target as 21
 
-            //Print first dealt card for dealer
-            //Print first and second dealt cards for player
             //Identify if first and second cards equal 21
             //If player's first and second card equal 21 automatic win
             //Otherwise, ask player if they want another card
