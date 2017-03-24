@@ -29,7 +29,7 @@ namespace Blackjack
 
         //Get total value of hand method
 
-        public int GetHandTotal(List<Card> hand)
+        public static int GetHandTotal(List<Card> hand)
         {
             var sum = 0;
             foreach (var card in hand)
@@ -38,6 +38,52 @@ namespace Blackjack
             }
             return sum;
         }
+
+        //Dealer Logic method
+
+        public static int DealerEvaluation(List<Card> dealtHand, List<Card> gameDeck)
+        {
+            int countTries = 0;
+            int value = 0;
+            while (GetHandTotal(dealtHand) <= 16)
+            {
+                dealtHand.Add(gameDeck[0]);
+                gameDeck.RemoveAt(0);
+                Console.WriteLine($"Here is the dealer's new card: {dealtHand[0]}");
+                Console.WriteLine($"The total value is {GetHandTotal(dealtHand)}");
+                countTries++;
+            }
+            return value;
+        }
+
+//        while (true)
+//        {
+//            int value = ++index;
+//            // Check to see if limit is hit.
+//            if (value > 5)
+//            {
+//                Console.WriteLine("While-loop break");
+//                break;
+//            }
+//            // You can add another condition.
+//            if (value > 100)
+//            {
+//                throw new Exception("Never hit");
+//}
+//            // Write to the screen on each iteration.
+//            Console.WriteLine("While-loop statement");
+//        }
+
+
+        ////Card evaluation method
+
+        //public int CardEvaluation()
+        //{
+
+        //    while (card <= 21) ;
+        //        Console.WriteLine
+        //}
+
 
         //Main
         static void Main(string[] args)
@@ -73,11 +119,6 @@ namespace Blackjack
 
             //Get total card value of dealer's hand
             //var currentCardTotals = dealersHand [0].GetCardValue();
-
-
-            //if rv < 
-            //if rv > 21 
-            //Console.WriteLine("Sorry, you lost.")
 
             //Assign values to cards
             //Define dealer rules(hits if they hold less than 16, otherwise Dealer stays)
