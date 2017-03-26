@@ -39,51 +39,48 @@ namespace Blackjack
             return sum;
         }
 
-        //Dealer Logic method
+        //Dealer Logic method -> produces dealer's card total
 
         public static int DealerEvaluation(List<Card> dealtHand, List<Card> gameDeck)
         {
-            int countTries = 0;
+            int count = 0;
             int value = 0;
-            while (GetHandTotal(dealtHand) <= 16)
+            while (GetHandTotal(dealtHand) <= 17)
             {
                 dealtHand.Add(gameDeck[0]);
                 gameDeck.RemoveAt(0);
                 Console.WriteLine($"Here is the dealer's new card: {dealtHand[0]}");
                 Console.WriteLine($"The total value is {GetHandTotal(dealtHand)}");
-                countTries++;
+                count++;
             }
             return value;
         }
 
-//        while (true)
-//        {
-//            int value = ++index;
-//            // Check to see if limit is hit.
-//            if (value > 5)
-//            {
-//                Console.WriteLine("While-loop break");
-//                break;
-//            }
-//            // You can add another condition.
-//            if (value > 100)
-//            {
-//                throw new Exception("Never hit");
-//}
-//            // Write to the screen on each iteration.
-//            Console.WriteLine("While-loop statement");
-//        }
+        /////Player Logic method -> produces player's card total
 
-
-        ////Card evaluation method
-
-        //public int CardEvaluation()
+        //public static int PlayerEvaluation(List<Card> dealtHand, List<Card> gameDeck) 
         //{
-
-        //    while (card <= 21) ;
-        //        Console.WriteLine
+        //    int value = 0;
+        //    
         //}
 
+        //////Player may request another card logic
+
+        public static int PlayerMayAskForNewCard() 
+        {
+            count = 0;
+            int value = 0;
+            while (GetHandTotal(dealtHand) <= 21)
+            {
+                dealtHand.Add(gameDeck[0]);
+                gameDeck.RemoveAt(0);
+
+                Console.WriteLine($"Your new card is {dealtHand[0]}.");
+                Console.WriteLine($"Your current card total is {GetHandTotal(dealtHand)}.");
+                count++;
+                }
+            return value;
+    }
 
         //Main
         static void Main(string[] args)
@@ -114,15 +111,25 @@ namespace Blackjack
             Console.WriteLine($"Here are your first two cards: {playersHand [0]} and {playersHand [1]}");
             Console.WriteLine($"The total value is {GetHandTotal(playersHand)}");
 
-            Console.WriteLine("Do you want another card?");
-            var playerhit = Console.ReadLine();
+            Console.WriteLine("Do you want another card? Please enter 1 for yes, 2 for no.");
+            var playerhit = Convert.ToInt32(Console.ReadLine());
 
-            //Get total card value of dealer's hand
-            //var currentCardTotals = dealersHand [0].GetCardValue();
+            if (playerhit == 1)
+            {
+                Console.WriteLine(PlayerMayAskForNewCard(playersHand));
+            }
+            
+            // elseif ({NEWTOTAL} < 21)
+            //        Console.WriteLine($"Your current card total is {NEWTOTALFROM METHOD}.");
+            //}
+            //else
+            //{
+            //    compares their total to dealer's total and gives winner
+            //}
 
-            //Assign values to cards
-            //Define dealer rules(hits if they hold less than 16, otherwise Dealer stays)
-            //Identify target as 21
+
+            //reads response. if no, runs dealer method then compares values and produces win/loss response.
+            //if yes, produces new card, evaluates based on rules.
 
             //Identify if first and second cards equal 21
             //If player's first and second card equal 21 automatic win
