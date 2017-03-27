@@ -67,20 +67,23 @@ namespace Blackjack
 
                     Console.WriteLine($"Your new card is {dealtHand[0]}.");
                     Console.WriteLine($"Your current card total is {GetHandTotal(dealtHand)}.");
-                    Console.WriteLine("Do you want another card? Please enter 1 for yes, 2 for no.");
-                    var anotherCard = Convert.ToInt32(Console.ReadLine());
 
-                    if (((GetHandTotal(dealtHand) < 21)) && anotherCard == 1)
+                    if (GetHandTotal(dealtHand) < 21)
                     {
-
+                        Console.WriteLine("Do you want another card? Please enter 1 for yes, 2 for no.");
+                        var anotherCard = Convert.ToInt32(Console.ReadLine());
                     }
-                    else if ((GetHandTotal(dealtHand) == 21))
+                    else if (GetHandTotal(dealtHand) == 21)
                     {
                         Console.WriteLine("Congratulations!");
                     }
-                    else
+                    else if (GetHandTotal(dealtHand) > 21)
                     {
                         Console.WriteLine("Sorry. You went over. You lost.");
+                    }
+                    else
+                    {
+                        break;
                     }
                 }
                 
