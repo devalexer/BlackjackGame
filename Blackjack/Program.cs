@@ -8,7 +8,6 @@ namespace Blackjack
 {
     class Program
     {
-
         //Sort the deck method
 
         public static List<Card> CreateAndShuffleDeck()
@@ -39,48 +38,57 @@ namespace Blackjack
             return sum;
         }
 
-        //Dealer Logic method -> produces dealer's card total
+        //***********TODO: make sure it writes properly so I can call it in main
+        //Dealer Logic method -> produces dealer's final card total
 
         public static int DealerEvaluation(List<Card> dealtHand, List<Card> gameDeck)
         {
-            int count = 0;
             int value = 0;
-            while (GetHandTotal(dealtHand) <= 17)
+            while (GetHandTotal(dealtHand) <= 16)
             {
                 dealtHand.Add(gameDeck[0]);
                 gameDeck.RemoveAt(0);
-                Console.WriteLine($"Here is the dealer's new card: {dealtHand[0]}");
-                Console.WriteLine($"The total value is {GetHandTotal(dealtHand)}");
-                count++;
             }
             return value;
         }
 
-        /////Player Logic method -> produces player's card total
-
-        //public static int PlayerEvaluation(List<Card> dealtHand, List<Card> gameDeck) 
-        //{
-        //    int value = 0;
-        //    
-        //}
 
         //////Player may request another card logic
+          public static int PlayerAsksForNewCard(List<Card> dealtHand, List<Card> gameDeck)
+          {
+            int value = 2;
 
-        public static int PlayerMayAskForNewCard() 
-        {
-            count = 0;
-            int value = 0;
-            while (GetHandTotal(dealtHand) <= 21)
+            for (int i = 0; i < 5; i++)
             {
-                dealtHand.Add(gameDeck[0]);
-                gameDeck.RemoveAt(0);
+                if (GetHandTotal(dealtHand) < 21)
+                {
+                    dealtHand.Add(gameDeck[0]);
+                    gameDeck.RemoveAt(0);
 
-                Console.WriteLine($"Your new card is {dealtHand[0]}.");
-                Console.WriteLine($"Your current card total is {GetHandTotal(dealtHand)}.");
-                count++;
+                    Console.WriteLine($"Your new card is {dealtHand[0]}.");
+                    Console.WriteLine($"Your current card total is {GetHandTotal(dealtHand)}.");
+                    Console.WriteLine("Do you want another card? Please enter 1 for yes, 2 for no.");
+                    var anotherCard = Convert.ToInt32(Console.ReadLine());
+
+                    if (((GetHandTotal(dealtHand) < 21)) && anotherCard == 1)
+                    {
+
+                    }
+                    else if ((GetHandTotal(dealtHand) == 21))
+                    {
+                        Console.WriteLine("Congratulations!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry. You went over. You lost.");
+                    }
                 }
+                
+            }
             return value;
-    }
+          }
+
+
 
         //Main
         static void Main(string[] args)
@@ -89,6 +97,7 @@ namespace Blackjack
             var gameDeck = CreateAndShuffleDeck();
             var playersHand = new List<Card>();
             var dealersHand = new List<Card>();
+            //int dealersFinalValue = DealerEvaluation();
 
 
             Console.WriteLine("Let's play BlackJack!");
@@ -111,25 +120,30 @@ namespace Blackjack
             Console.WriteLine($"Here are your first two cards: {playersHand [0]} and {playersHand [1]}");
             Console.WriteLine($"The total value is {GetHandTotal(playersHand)}");
 
+            //Asks user if they want another card
             Console.WriteLine("Do you want another card? Please enter 1 for yes, 2 for no.");
             var playerhit = Convert.ToInt32(Console.ReadLine());
 
+            //If player wants another card, runs player card addition & evaluation loop method to produce final player value
+            //If player does not want another card, evaluates final values and declares winnner
             if (playerhit == 1)
             {
-                Console.WriteLine(PlayerMayAskForNewCard(playersHand));
+                PlayerAsksForNewCard(playersHand, gameDeck);
             }
-            
-            // elseif ({NEWTOTAL} < 21)
-            //        Console.WriteLine($"Your current card total is {NEWTOTALFROM METHOD}.");
-            //}
             //else
             //{
-            //    compares their total to dealer's total and gives winner
+            //    if (GetHandTotal(playersHand) <= dealersFinalValue)
+            //        Console.WriteLine("Sorry, you lost.");
+            //    else
+            //        Console.WriteLine("Congratulations, you won.");
             //}
 
 
-            //reads response. if no, runs dealer method then compares values and produces win/loss response.
-            //if yes, produces new card, evaluates based on rules.
+
+
+
+
+
 
             //Identify if first and second cards equal 21
             //If player's first and second card equal 21 automatic win
